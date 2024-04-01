@@ -1,0 +1,326 @@
+{
+	"width": 1280,
+	"height": 720,
+	"fps": 30,
+	"maxPoints": 1,
+	"main": "./script/_bootstrap.js",
+	"assets": {
+		"_bootstrap": {
+			"type": "script",
+			"path": "script/_bootstrap.js",
+			"global": true
+		},
+		"main": {
+			"type": "script",
+			"path": "script/main.js",
+			"global": true
+		},
+		"parameterObject": {
+			"type": "script",
+			"path": "script/parameterObject.js",
+			"global": true
+		},
+		"gameScene": {
+			"type": "script",
+			"path": "script/game_scene/gameScene.js",
+			"global": true
+		},
+		"fontSize": {
+			"type": "script",
+			"path": "script/common/fontSize.js",
+			"global": true
+		},
+		"easter_bunny_egg": {
+			"type": "image",
+			"path": "image/easter_bunny_egg.png",
+			"width": 360,
+			"height": 64
+		},
+		"easter_bunny_ears": {
+			"type": "image",
+			"path": "image/easter_bunny_ears.png",
+			"width": 576,
+			"height": 64
+		},
+		"easter_egg_red": {
+			"type": "image",
+			"path": "image/easter_egg_red.png",
+			"width": 640,
+			"height": 64
+		},
+		"img_shadow": {
+			"type": "image",
+			"path": "image/img_shadow.png",
+			"width": 64,
+			"height": 32
+		},
+		"easterEgg": {
+			"type": "script",
+			"path": "script/game_scene/egg/easter_egg/easterEgg.js",
+			"global": true
+		},
+		"shadow": {
+			"type": "script",
+			"path": "script/game_scene/egg/shadow.js",
+			"global": true
+		},
+		"textSpawn": {
+			"type": "script",
+			"path": "script/game_scene/effect/textSpawn.js",
+			"global": true
+		},
+		"countdownTimer": {
+			"type": "script",
+			"path": "script/game_scene/hud/countdownTimer.js",
+			"global": true
+		},
+		"score": {
+			"type": "script",
+			"path": "script/game_scene/hud/score.js",
+			"global": true
+		},
+		"easter_egg_blue": {
+			"type": "image",
+			"path": "image/easter_egg_blue.png",
+			"width": 640,
+			"height": 64
+		},
+		"easter_egg_gold": {
+			"type": "image",
+			"path": "image/easter_egg_gold.png",
+			"width": 640,
+			"height": 64
+		},
+		"easter_egg_green": {
+			"type": "image",
+			"path": "image/easter_egg_green.png",
+			"width": 640,
+			"height": 64
+		},
+		"blueEgg": {
+			"type": "script",
+			"path": "script/game_scene/egg/easter_egg/blueEgg.js",
+			"global": true
+		},
+		"goldEgg": {
+			"type": "script",
+			"path": "script/game_scene/egg/easter_egg/goldEgg.js",
+			"global": true
+		},
+		"greenEgg": {
+			"type": "script",
+			"path": "script/game_scene/egg/easter_egg/greenEgg.js",
+			"global": true
+		},
+		"redEgg": {
+			"type": "script",
+			"path": "script/game_scene/egg/easter_egg/redEgg.js",
+			"global": true
+		},
+		"mouse_cursor": {
+			"type": "image",
+			"path": "image/mouse_cursor.png",
+			"width": 128,
+			"height": 128
+		},
+		"dust": {
+			"type": "script",
+			"path": "script/game_scene/effect/dust.js",
+			"global": true
+		},
+		"commonScene": {
+			"type": "script",
+			"path": "script/common/commonScene.js",
+			"global": true
+		},
+		"titleScene": {
+			"type": "script",
+			"path": "script/title_scene/titleScene.js",
+			"global": true
+		},
+		"startTimer": {
+			"type": "script",
+			"path": "script/title_scene/startTimer.js",
+			"global": true
+		},
+		"gameStart": {
+			"type": "script",
+			"path": "script/game_scene/gameStart.js",
+			"global": true
+		},
+		"sight": {
+			"type": "script",
+			"path": "script/game_scene/sight.js",
+			"global": true
+		},
+		"img_sight": {
+			"type": "image",
+			"path": "image/img_sight.png",
+			"width": 64,
+			"height": 64
+		},
+		"gameFinish": {
+			"type": "script",
+			"path": "script/game_scene/gameFinish.js",
+			"global": true
+		},
+		"floor": {
+			"type": "script",
+			"path": "script/game_scene/floor.js",
+			"global": true
+		},
+		"se_jump": {
+			"type": "audio",
+			"path": "audio/se_jump",
+			"systemId": "sound",
+			"duration": 419,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"bgm": {
+			"type": "audio",
+			"path": "audio/bgm",
+			"systemId": "music",
+			"duration": 58000,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se_ground": {
+			"type": "audio",
+			"path": "audio/se_ground",
+			"systemId": "sound",
+			"duration": 392,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se_collide": {
+			"type": "audio",
+			"path": "audio/se_collide",
+			"systemId": "sound",
+			"duration": 1087,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"blackout": {
+			"type": "script",
+			"path": "script/game_scene/blackout.js",
+			"global": true
+		},
+		"audioController": {
+			"type": "script",
+			"path": "script/common/audioController.js",
+			"global": true
+		},
+		"customLoadingScene": {
+			"type": "script",
+			"path": "script/loading_scene/customLoadingScene.js",
+			"global": true
+		},
+		"ears": {
+			"type": "script",
+			"path": "script/game_scene/egg/easter_bunny/ears.js",
+			"global": true
+		},
+		"easterBunny": {
+			"type": "script",
+			"path": "script/game_scene/egg/easter_bunny/easterBunny.js",
+			"global": true
+		},
+		"se_crack": {
+			"type": "audio",
+			"path": "audio/se_crack",
+			"systemId": "sound",
+			"duration": 1427,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se_creature": {
+			"type": "audio",
+			"path": "audio/se_creature",
+			"systemId": "sound",
+			"duration": 515,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"egg": {
+			"type": "script",
+			"path": "script/game_scene/egg/egg.js",
+			"global": true
+		},
+		"easter_egg_rainbow": {
+			"type": "image",
+			"path": "image/easter_egg_rainbow.png",
+			"width": 256,
+			"height": 64
+		},
+		"rainbowEgg": {
+			"type": "script",
+			"path": "script/game_scene/egg/easter_egg/rainbowEgg.js",
+			"global": true
+		},
+		"img_carrot": {
+			"type": "image",
+			"path": "image/img_carrot.png",
+			"width": 64,
+			"height": 64
+		},
+		"carrot": {
+			"type": "script",
+			"path": "script/game_scene/carrot.js",
+			"global": true
+		},
+		"bgm_power_up": {
+			"type": "audio",
+			"path": "audio/bgm_power_up",
+			"systemId": "music",
+			"duration": 24000,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"audioId": {
+			"type": "script",
+			"path": "script/common/audioId.js",
+			"global": true
+		}
+	},
+	"environment": {
+		"sandbox-runtime": "3",
+		"nicolive": {
+			"supportedModes": [
+				"ranking"
+			],
+			"preferredSessionParameters": {
+				"totalTimeLimit": 80
+			}
+		}
+	},
+	"globalScripts": []
+}
