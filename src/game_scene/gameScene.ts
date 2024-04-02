@@ -293,7 +293,7 @@ export class GameScene extends CommonScene {
             this.createGoldEgg();
         }
 
-        if (elapsedSec >= 45 && this.random.generate() <= 0.005) {
+        if (elapsedSec >= 40 && this.random.generate() <= 0.005) {
             this.createRainbowEgg();
         }
     };
