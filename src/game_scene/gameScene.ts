@@ -169,7 +169,7 @@ export class GameScene extends CommonScene {
             this.checkCllideCarrot(bunny);
             new Dust(this, this.effectLayer, bunny.getGroundPos(), bunny.getSize(), GameScene.COLOR_PINK);
         });
-        bunny.onNormal.add(bunny => {
+        bunny.onNormal.add(_bunny => {
             this.audio.stopMusic(MusicId.POWER_UP);
             this.audio.playMusic(MusicId.NORMAL);
         });
@@ -185,6 +185,10 @@ export class GameScene extends CommonScene {
                 }
                 bunny.powerUp();
                 new Dust(this, this.effectLayer, { x: carrot.x, y: carrot.y }, { width: carrot.width, height: carrot.height }, "orange");
+
+                if (carrot instanceof Carrot) {
+                    this.addScore(carrot.score, 0, carrot);
+                }
                 carrot.destroy();
             }
         })
@@ -206,20 +210,24 @@ export class GameScene extends CommonScene {
             }
         });
         if (combo > 0) {
-            const result = this.score.add(score, combo);
-            let x = bunny.x;
-            if (bunny.x < bunny.width) {
-                x = bunny.width;
-            } else if (bunny.x > g.game.width - bunny.width) {
-                x = g.game.width - bunny.width;
-            }
-            let y = bunny.y - bunny.height / 2;
-            if (bunny.y < bunny.height * 2) {
-                y = bunny.height * 2;
-            }
-            const scoreSpawn = new TextSpawn(this, this.spawnFont, result.toString(), { x: x, y: y });
-            this.textLayer.append(scoreSpawn);
+            this.addScore(score, combo, bunny);
         }
+    };
+
+    private addScore = (score: number, combo: number, target: g.CommonArea) => {
+        const result = this.score.add(score, combo);
+        let x = target.x;
+        if (target.x < target.width) {
+            x = target.width;
+        } else if (target.x > g.game.width - target.width) {
+            x = g.game.width - target.width;
+        }
+        let y = target.y - target.height / 2;
+        if (target.y < target.height * 2) {
+            y = target.height * 2;
+        }
+        const scoreSpawn = new TextSpawn(this, this.spawnFont, result.toString(), { x: x, y: y });
+        this.textLayer.append(scoreSpawn);
     };
 
     private checkCollideEgg = (bunny: EasterBunny, egg: EasterEgg): boolean => {
@@ -291,6 +299,7 @@ export class GameScene extends CommonScene {
 
         if (elapsedSec === 45 || elapsedSec === 53) {
             this.createGoldEgg();
+            this.createRainbowEgg();
         }
 
         if (elapsedSec >= 40 && this.random.generate() <= 0.005) {
