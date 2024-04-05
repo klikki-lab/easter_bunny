@@ -6,7 +6,7 @@ export class GoldEgg extends EasterEgg {
     static readonly COLOR = "#ffd700";
 
     constructor(scene: g.Scene, shadow: Shadow) {
-        super(scene, "easter_egg_gold", 800, shadow, 3);
+        super(scene, "easter_egg_gold", 200, shadow, 3);
     }
 
     override init(x: number, y: number, targetX?: number, targetY?: number) {
