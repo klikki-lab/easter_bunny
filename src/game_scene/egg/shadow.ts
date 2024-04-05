@@ -9,7 +9,7 @@ export class Shadow extends g.Sprite {
             src: scene.asset.getImageById("img_shadow"),
             anchorX: 0.5,
             anchorY: 0.5,
-            opacity: 0.2,
+            opacity: 0.33,
         });
     }
 

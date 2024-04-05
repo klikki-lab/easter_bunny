@@ -58,8 +58,7 @@ export class EasterBunny extends Egg {
         }, shadow);
 
         this.start();
-
-        this._shadow.opacity = .5;
+        
         this._shadow.move(this);
 
         this._ears = new Ears(scene, EasterBunny.ANIM_INTERVAL);
