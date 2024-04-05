@@ -8,7 +8,7 @@ export class RainbowEgg extends EasterEgg {
     static readonly COLOR = "#ff8040";
 
     constructor(scene: g.Scene, shadow: Shadow) {
-        super(scene, "easter_egg_rainbow", 100, shadow, 4);
+        super(scene, "easter_egg_rainbow", 1000, shadow, 4);
     }
 
     override init(x: number, y: number, targetX?: number, targetY?: number) {
