@@ -7,22 +7,23 @@ interface SoundEffectParams {
 
 export interface SoundEffectAssetParams {
     assetId: string;
-    volume?: number;
+    volumeRate?: number;
     interval?: number;
 }
 
 export class AudioController {
-
-    private static readonly DEFAULT_MUSIC_VOLUME = 0.5;
-    private static readonly DEFAULT_SE_VOLUME = 0.5;
     private static readonly DEFAULT_SE_INTERVAL = 2;
 
     private asset: g.AssetAccessor;
     private musicList: g.AudioAsset[] = [];
     private seList: SoundEffectParams[] = [];
+    private musicVolume: number = 1;
+    private soundVolume: number = 1;
 
-    constructor(asset: g.AssetAccessor) {
+    constructor(asset: g.AssetAccessor, musicVolume: number, soundVolume: number) {
         this.asset = asset;
+        this.musicVolume = musicVolume;
+        this.soundVolume = soundVolume;
     }
 
     addBGM = (assetIds: string[]): void => {
@@ -31,7 +32,7 @@ export class AudioController {
 
     playMusic = (index: number = 0): g.AudioPlayer => {
         const player = this.musicList[index].play();
-        player.changeVolume(AudioController.DEFAULT_MUSIC_VOLUME);
+        player.changeVolume(this.musicVolume);
         return player;
     }
 
@@ -42,7 +43,7 @@ export class AudioController {
             const interval = param.interval ?? AudioController.DEFAULT_SE_INTERVAL;
             const se: SoundEffectParams = {
                 audio: this.asset.getAudioById(param.assetId),
-                volume: param.volume ?? AudioController.DEFAULT_SE_VOLUME,
+                volume: this.soundVolume * (param.volumeRate ? param.volumeRate : 1),
                 interval: Math.max(0, interval),
                 age: g.game.age,
             };

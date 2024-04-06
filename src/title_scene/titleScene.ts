@@ -282,10 +282,10 @@ export class TitleScene extends CommonScene {
         });
 
     private createAudioAssetController = (): AudioController => {
-        const controller = new AudioController(this.asset);
+        const controller = new AudioController(this.asset, g.game.audio.music.volume, g.game.audio.sound.volume);
         const params: SoundEffectAssetParams[] = [
             { assetId: "se_jump" },
-            { assetId: "se_ground", volume: 0.2 },
+            { assetId: "se_ground", volumeRate: 0.5 },
             { assetId: "se_crack" },
             { assetId: "se_collide" },
             { assetId: "se_creature" }
