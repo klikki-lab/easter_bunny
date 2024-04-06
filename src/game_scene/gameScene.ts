@@ -66,7 +66,7 @@ export class GameScene extends CommonScene {
         this.onLoad.add(this.loadHandler);
     }
 
-    private detectBunnyCollision = (egg: g.E) => {
+    private detectBunnyCollision = (egg: g.E): void => {
         if (!(egg instanceof EasterEgg)) return;
         if (!egg.isApperar || egg.isJumping) return;
 
@@ -77,14 +77,14 @@ export class GameScene extends CommonScene {
         }
     };
 
-    private detectBunnyPosition = (egg: g.E) => {
+    private detectBunnyPosition = (egg: g.E): void => {
         if (!(egg instanceof EasterEgg)) return;
         if (g.Util.distanceBetweenOffsets(this.bunny, egg) > this.bunny.height * 1.75) return;
 
         this.appendEggLayer(egg);
     };
 
-    private updateHandler = () => {
+    private updateHandler = (): void => {
         if (!this.bunny.isJumping) {
             this.eggForegroundLayer.children?.forEach(this.detectBunnyCollision);
             this.eggBackgroundLayer.children?.forEach(this.detectBunnyCollision);
@@ -100,7 +100,7 @@ export class GameScene extends CommonScene {
         }
     };
 
-    private loadHandler = (_scene: g.Scene) => {
+    private loadHandler = (_scene: g.Scene): void => {
         new Floor(this, this);
         this.shadowLayer = new g.E({ scene: this, parent: this });
         this.effectLayer = new g.E({ scene: this, parent: this });
@@ -150,7 +150,7 @@ export class GameScene extends CommonScene {
         // }
     };
 
-    private pointDownHandler = (ev: g.PointDownEvent) => {
+    private pointDownHandler = (ev: g.PointDownEvent): void => {
         if (this.bunny.canJump) {
             this.audio.playSE(SoundEffectId.JUMP);
             this.bunny.jump(ev.point);
