@@ -2,7 +2,7 @@ import { FontSize } from "../../common/fontSize";
 
 export class Score extends g.Label {
 
-    private static readonly COMBO_BONUS = 100;
+    private static readonly MULTI_BONUS = 10;
 
     constructor(scene: g.Scene, font: g.DynamicFont) {
         super({
@@ -17,14 +17,15 @@ export class Score extends g.Label {
     }
 
     /**
-     * 得点を加算する。コンボボーナスを含めた得点は スコア + コンボ数 * 100 点。
+     * 得点を加算する。マルチコンボボーナスを含めた得点は スコア * combo。
      * @param score スコア
-     * @param combo コンボ数
+     * @param combo マルチコンボ数
      * @returns score + combo * 100
      */
     add = (score: number, combo: number = 1): number => {
-        const comboBonus = combo <= 1 ? 0 : combo * Score.COMBO_BONUS;
-        const result = score + comboBonus;
+        const result = score * Math.max(combo, 1);
+        // const multiComboBonus = combo <= 1 ? 0 : Score.MULTI_BONUS << (combo - 1);
+        // const result = score + multiComboBonus;
         g.game.vars.gameState.score += result;
         this.text = `SCORE ${g.game.vars.gameState.score}`;
         this.invalidate();
