@@ -186,7 +186,7 @@ export class TitleScene extends CommonScene {
         if (this.progress < 1 || this.progress > 2) return;
 
         if (this.progress === 1) {
-            this.tutorial.text = "OK! 次はタマゴに向かってジャンプ！";
+            this.tutorial.text = "次はタマゴに向かってジャンプ！";
             this.createRedEgg();
         } else if (this.progress === 2) {
             this.tutorial.text = "イイ感じ！その調子でガンバってネ！";

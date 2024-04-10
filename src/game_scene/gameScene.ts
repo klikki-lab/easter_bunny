@@ -201,7 +201,6 @@ export class GameScene extends CommonScene {
             score += egg.score;
             combo++;
             this.rainbowEggSpawnRate += egg.isNaked() ? 0.001 : 0.0001;
-            console.log(this.rainbowEggSpawnRate);
         };
 
         let score = 0;
