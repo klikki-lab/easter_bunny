@@ -24,6 +24,7 @@ import { Carrot } from "./carrot";
 
 export class GameScene extends CommonScene {
 
+    private static readonly REINBOW_EGG_SPAWN_RATE = 0.005;
     static readonly COLOR_PINK = "#ffcbcb";
 
     private camera: g.Camera2D;
@@ -43,6 +44,7 @@ export class GameScene extends CommonScene {
     private spawnFont: g.DynamicFont;
     private random: g.RandomGenerator;
     private audio: AudioController;
+    private rainbowEggSpawnRate: number = GameScene.REINBOW_EGG_SPAWN_RATE;
 
     constructor(param: GameMainParameterObject, timeLimit: number) {
         super({
@@ -195,18 +197,23 @@ export class GameScene extends CommonScene {
     };
 
     private checkCllideEggLayer = (bunny: EasterBunny) => {
+        const colide = (egg: EasterEgg): void => {
+            score += egg.score;
+            combo++;
+            this.rainbowEggSpawnRate += egg.isNaked() ? 0.001 : 0.0001;
+            console.log(this.rainbowEggSpawnRate);
+        };
+
         let score = 0;
         let combo = 0;
         this.eggForegroundLayer.children?.forEach((egg: g.E) => {
             if (egg instanceof EasterEgg && this.checkCollideEgg(bunny, egg)) {
-                score += egg.score;
-                combo++;
+                colide(egg);
             }
         });
         this.eggBackgroundLayer.children?.forEach((egg: g.E) => {
             if (egg instanceof EasterEgg && this.checkCollideEgg(bunny, egg)) {
-                score += egg.score;
-                combo++;
+                colide(egg);
             }
         });
         if (combo > 0) {
@@ -301,7 +308,7 @@ export class GameScene extends CommonScene {
             this.createGoldEgg();
         }
 
-        if (elapsedSec >= 40 && this.random.generate() <= 0.005) {
+        if (elapsedSec >= 40 && this.random.generate() <= this.rainbowEggSpawnRate) {
             this.createRainbowEgg();
         }
     };
@@ -436,6 +443,7 @@ export class GameScene extends CommonScene {
         egg.init(x, y, targetX, targetY);
         this.bouncedEgg(egg, RainbowEgg.COLOR);
         this.appendEggLayer(egg);
+        this.rainbowEggSpawnRate = GameScene.REINBOW_EGG_SPAWN_RATE;
     };
 
     private appendEggLayer = (egg: EasterEgg): void => {
