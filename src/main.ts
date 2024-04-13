@@ -4,8 +4,8 @@ import { TitleScene } from "./title_scene/titleScene";
 import { CustomLoadingScene } from "./loading_scene/customLoadingScene";
 
 export function main(param: GameMainParameterObject): void {
-	g.game.audio.music.volume = 1.0;
-	g.game.audio.sound.volume = 1.0;
+	g.game.audio.music.volume = 0.75;
+	g.game.audio.sound.volume = 0.75;
 	g.game.vars.gameState = {
 		score: 0,
 		playThreshold: 100,

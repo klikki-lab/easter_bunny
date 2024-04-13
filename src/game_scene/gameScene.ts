@@ -507,7 +507,7 @@ export class GameScene extends CommonScene {
         controller.addBGM(["bgm", "bgm_power_up"]);
         const params: SoundEffectAssetParams[] = [
             { assetId: "se_jump" },
-            { assetId: "se_ground", volumeRate: 0.5 },
+            { assetId: "se_ground", volumeRate: 0.8 },
             { assetId: "se_crack" },
             { assetId: "se_collide" },
             { assetId: "se_creature" }
