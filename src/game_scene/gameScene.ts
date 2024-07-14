@@ -21,6 +21,8 @@ import { MusicId, SoundEffectId } from "../common/audioId";
 import { Blackout } from "./blackout";
 import { RainbowEgg } from "./egg/easter_egg/rainbowEgg";
 import { Carrot } from "./carrot";
+import { Button } from "../common/button";
+import { TitleScene } from "../title_scene/titleScene";
 
 export class GameScene extends CommonScene {
 
@@ -45,8 +47,9 @@ export class GameScene extends CommonScene {
     private random: g.RandomGenerator;
     private audio: AudioController;
     private rainbowEggSpawnRate: number = GameScene.REINBOW_EGG_SPAWN_RATE;
+    private isGameOver: boolean = false;
 
-    constructor(param: GameMainParameterObject, timeLimit: number) {
+    constructor(private param: GameMainParameterObject, timeLimit: number) {
         super({
             game: g.game,
             name: "game scene",
@@ -153,7 +156,7 @@ export class GameScene extends CommonScene {
     };
 
     private pointDownHandler = (ev: g.PointDownEvent): void => {
-        if (this.bunny.canJump) {
+        if (!this.isGameOver && this.bunny.canJump) {
             this.audio.playSE(SoundEffectId.JUMP);
             this.bunny.jump(ev.point);
             this.sight.target(ev.point);
@@ -479,10 +482,39 @@ export class GameScene extends CommonScene {
     };
 
     private gameOver = (): void => {
-        this.onPointDownCapture.destroy();
+        this.isGameOver = true;
         new Blackout(this, this.labelLayer).close();
         const finish = new GameFinish(this, this.createDynamicFont("white", "black", FontSize.XL, "sans-serif"));
         this.labelLayer.append(finish);
+
+       //this.setTimeout(this.showRetryButton, 500);
+    };
+
+    private showRetryButton = (): void => {
+        const font = new g.DynamicFont({
+            game: g.game,
+            fontFamily: "sans-serif",
+            fontWeight: "bold",
+            strokeWidth: FontSize.MEDIUM / 6,
+            strokeColor: "#222",
+            fontColor: "white",
+            size: FontSize.MEDIUM,
+        });
+        const retryButton = new Button(this, font, "RETRY");
+        retryButton.x = g.game.width - retryButton.width / 2 - FontSize.MEDIUM;
+        retryButton.y = g.game.height - retryButton.height / 2 - FontSize.MEDIUM;
+        retryButton.onClicked.add(_ => {
+            g.game.vars.gameState.score = 0;
+            this.audio.stopMusic(MusicId.NORMAL);
+            this.audio.stopMusic(MusicId.POWER_UP);
+
+            const titleScene = new TitleScene(this.param, 7);
+            titleScene.onFinish.add(() => {
+                g.game.replaceScene(new GameScene(this.param, 60));
+            });
+            g.game.replaceScene(titleScene);
+        });
+        this.append(retryButton);
     };
 
     private shakeCamera = (): void => {

@@ -13,6 +13,7 @@ import { TextSpawn } from "../game_scene/effect/textSpawn";
 import { Floor } from "../game_scene/floor";
 import { AudioController, SoundEffectAssetParams } from "../common/audioController";
 import { SoundEffectId } from "../common/audioId";
+import { Button } from "../common/button";
 
 export class TitleScene extends CommonScene {
 
@@ -73,6 +74,21 @@ export class TitleScene extends CommonScene {
         timer.start();
         this.append(timer);
 
+        // const font = new g.DynamicFont({
+        //     game: g.game,
+        //     fontFamily: "sans-serif",
+        //     fontWeight: "bold",
+        //     strokeWidth: FontSize.MEDIUM / 6,
+        //     strokeColor: "#222",
+        //     fontColor: "white",
+        //     size: FontSize.MEDIUM,
+        // });
+        // const startButton = new Button(this, font, "START!");
+        // startButton.x = g.game.width - startButton.width / 2 - FontSize.MEDIUM;
+        // startButton.y = g.game.height - startButton.height / 2 - FontSize.MEDIUM;
+        // startButton.onClicked.add(_ => this.onFinish.fire());
+        // this.append(startButton);
+
         this.tutorial = this.createLabel(this.createDynamicFont("white", "black", FontSize.MEDIUM), "画面をクリックしてね！");
         this.tutorial.x = this.bunny.x;
         this.tutorial.y = this.title.y + this.title.height * 1.5;
@@ -113,6 +129,8 @@ export class TitleScene extends CommonScene {
         this.onUpdate.add(updateHandler);
 
         this.onPointDownCapture.add(ev => {
+            if (ev.target?.parent instanceof Button) return;
+
             if (this.bunny.canJump) {
                 this.audio.playSE(SoundEffectId.JUMP);
                 this.bunny.jump(ev.point);
